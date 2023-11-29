@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Racket player2;
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject mockBall;
+    [SerializeField] private GameObject spectator;
 
     private bool isServing;
     private PlayerInputActions playerActions;
@@ -40,15 +41,28 @@ public class GameManager : MonoBehaviour
     {
         Reset();
 
-        if (PhotonNetwork.IsMasterClient)
+        if ((string)PhotonNetwork.LocalPlayer.TagObject == "PLAYER")
         {
-            player1.SetCurrentPlayer();
-            player2.UnsetCurrentPlayer();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                player1.SetCurrentPlayer();
+                player2.UnsetCurrentPlayer();
+            }
+            else
+            {
+                player1.UnsetCurrentPlayer();
+                player2.SetCurrentPlayer();
+            }
         }
         else
         {
             player1.UnsetCurrentPlayer();
-            player2.SetCurrentPlayer();
+            player2.UnsetCurrentPlayer();
+
+            // Instantiate random camera
+            var camera = Instantiate(spectator, new Vector3(-4.1f, 0.81f, 1.4f), Quaternion.Euler(new Vector3(20, 90, 0)));
+            camera.AddComponent(typeof(SpectatorCam));
+
         }
     }
 

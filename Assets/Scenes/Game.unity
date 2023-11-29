@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5993737, g: 0.5997528, b: 0.59948874, a: 1}
+  m_IndirectSpecularColor: {r: 0.5993728, g: 0.59975207, b: 0.5994877, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4530,6 +4530,8 @@ MonoBehaviour:
   player2: {fileID: 1337997781}
   ball: {fileID: 863758252}
   mockBall: {fileID: 1598682419}
+  spectator: {fileID: 7447601292759418955, guid: a8e91ec270f32f34d83a85983b81dc1d,
+    type: 3}
 --- !u!4 &1553260725
 Transform:
   m_ObjectHideFlags: 0

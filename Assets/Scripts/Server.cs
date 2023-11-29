@@ -21,6 +21,8 @@ public class Server : MonoBehaviourPunCallbacks
 
     private readonly string gameVersion = "1";
 
+    public string tag;
+
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -34,6 +36,8 @@ public class Server : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = gameVersion;
         PhotonNetwork.JoinLobby();
+
+        PhotonNetwork.LocalPlayer.TagObject = tag;
     }
 
     public override void OnConnectedToMaster()

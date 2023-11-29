@@ -4431,7 +4431,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1943869439
 Canvas:
   m_ObjectHideFlags: 0
@@ -4543,6 +4543,7 @@ MonoBehaviour:
   progressLabel: {fileID: 1758639852}
   lobbyCode: {fileID: 1079290933}
   lobbyManager: {fileID: 1104556387}
+  tag: PLAYER
 --- !u!1 &2036249850
 GameObject:
   m_ObjectHideFlags: 0
