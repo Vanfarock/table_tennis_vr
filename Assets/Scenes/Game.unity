@@ -933,6 +933,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.26, z: 1.9}
   m_Center: {x: 0, y: 0.8, z: -0.6}
+--- !u!114 &402226689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402226686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67505bbde182b8447b4ecae5fbcacfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cont: 0
+  manager: {fileID: 1553260724}
 --- !u!1 &486730845
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,9 +5622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serveUpwardForce: 3
   maxPoints: 12
-  player1: {fileID: 1446280140}
-  player2: {fileID: 1337997781}
-  ball: {fileID: 863758252}
+  player1: {fileID: 1394072219}
+  player2: {fileID: 849782381}
+  ball: {fileID: 1161056099}
   mockBall: {fileID: 1598682419}
   net: {fileID: 112242521}
   areaP1: {fileID: 1698420878}
