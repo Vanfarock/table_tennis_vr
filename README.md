@@ -4,7 +4,7 @@
 
 1. Configurar o MetaQuest 2 seguindo a documentação oficial - https://developer.oculus.com/documentation/native/android/mobile-device-setup/
 
-2. Baixar SteamVR
+2. Baixar e iniciar o SteamVR
 
 3. Clonar esse repositório: `git clone https://github.com/Vanfarock/table_tennis_vr/`
 
