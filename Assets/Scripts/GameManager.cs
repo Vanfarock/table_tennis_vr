@@ -1,13 +1,12 @@
 using Photon.Pun;
-using System;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public float t;
+
     public float serveUpwardForce = 3f;
     public int maxPoints = 12;
 
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
     private InputAction serving;
     private InputAction restart;
     private Racket refPlayer;
+    private PhotonView photonView;
 
     private void Awake()
     {
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
             player1.UnsetCurrentPlayer();
             player2.SetCurrentPlayer();
         }
+
+        photonView = GetComponent<PhotonView>();
     }
 
     private void ResetGame()
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isServing)
+        if (isServing && PhotonNetwork.IsMasterClient)
         {
             HandleServe();
         }
@@ -96,7 +98,21 @@ public class GameManager : MonoBehaviour
             ResetGame();
         }
 
-        //var currentPlayer = GetCurrentPlayer();
+        
+        if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("SyncPositions", RpcTarget.OthersBuffered, player1.transform.position, player1.transform.rotation, ball.transform.position);
+        }
+    }
+
+    [PunRPC]
+    private void SyncPositions(Vector3 player1Position, Quaternion player1Rotation, Vector3 ballPosition)
+    {
+        Debug.Log("Received sync positions");
+        Debug.Log(ballPosition);
+        Debug.Log("-----------------");
+        ball.transform.position = Vector3.Lerp(ball.transform.position, ballPosition, t);
+        player1.transform.SetPositionAndRotation(player1Position, player1Rotation);
     }
 
     private void HandleServe()
