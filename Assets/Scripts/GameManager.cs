@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public float t;
+
     public float serveUpwardForce = 3f;
     public int maxPoints = 12;
 
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isServing)
+        if (isServing && PhotonNetwork.IsMasterClient)
         {
             HandleServe();
         }
@@ -99,15 +101,18 @@ public class GameManager : MonoBehaviour
         
         if (PhotonNetwork.IsMasterClient)
         {
-            photonView.RPC("SyncPositions", RpcTarget.OthersBuffered);
+            photonView.RPC("SyncPositions", RpcTarget.OthersBuffered, player1.transform.position, player1.transform.rotation, ball.transform.position);
         }
     }
 
     [PunRPC]
-    private void SyncPositions(Racket player1, GameObject ball)
+    private void SyncPositions(Vector3 player1Position, Quaternion player1Rotation, Vector3 ballPosition)
     {
-        this.ball.transform.position = ball.transform.position;
-        this.player1.transform.SetPositionAndRotation(player1.transform.position, player1.transform.rotation);
+        Debug.Log("Received sync positions");
+        Debug.Log(ballPosition);
+        Debug.Log("-----------------");
+        ball.transform.position = Vector3.Lerp(ball.transform.position, ballPosition, t);
+        player1.transform.SetPositionAndRotation(player1Position, player1Rotation);
     }
 
     private void HandleServe()

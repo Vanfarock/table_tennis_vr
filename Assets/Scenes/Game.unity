@@ -1919,6 +1919,7 @@ GameObject:
   - component: {fileID: 863758256}
   - component: {fileID: 863758255}
   - component: {fileID: 863758258}
+  - component: {fileID: 863758259}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -2020,6 +2021,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &863758259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863758252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f0d762697af2844826bbb44b509d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &916597852
 GameObject:
   m_ObjectHideFlags: 0
@@ -5035,6 +5048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8f7f1c1f9d2db46b4efa19712bf870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t: 1
   serveUpwardForce: 3
   maxPoints: 12
   player1: {fileID: 1446280140}

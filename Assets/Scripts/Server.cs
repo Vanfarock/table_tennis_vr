@@ -113,7 +113,11 @@ public class Server : MonoBehaviourPunCallbacks
     public void Play()
     {
         Debug.Log("Loading game");
-        PhotonNetwork.LoadLevel("Game");
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("Game");
+        }
     }
 
     public void CreateRoom()
