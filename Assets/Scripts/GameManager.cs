@@ -1,7 +1,4 @@
 using Photon.Pun;
-using System;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -24,6 +21,7 @@ public class GameManager : MonoBehaviour
     private InputAction serving;
     private InputAction restart;
     private Racket refPlayer;
+    private PhotonView photonView;
 
     private void Awake()
     {
@@ -56,6 +54,8 @@ public class GameManager : MonoBehaviour
             player1.UnsetCurrentPlayer();
             player2.SetCurrentPlayer();
         }
+
+        photonView = GetComponent<PhotonView>();
     }
 
     private void ResetGame()
@@ -96,7 +96,18 @@ public class GameManager : MonoBehaviour
             ResetGame();
         }
 
-        //var currentPlayer = GetCurrentPlayer();
+        
+        if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("SyncPositions", RpcTarget.OthersBuffered);
+        }
+    }
+
+    [PunRPC]
+    private void SyncPositions(Racket player1, GameObject ball)
+    {
+        this.ball.transform.position = ball.transform.position;
+        this.player1.transform.SetPositionAndRotation(player1.transform.position, player1.transform.rotation);
     }
 
     private void HandleServe()
