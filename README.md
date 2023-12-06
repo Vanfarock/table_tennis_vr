@@ -16,7 +16,7 @@
 
 7. Iniciar a aplicação no Unity (vai pedir para baixar a versão 2021.3.16f)
 
-7. Baixar e importar esses assets no projeto
+7. Baixar e importar os assets do PUN no projeto
 
 8. Adicionar o App ID da aplicação criada na Dashboard do PUN no Unity
 
